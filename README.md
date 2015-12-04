@@ -10,7 +10,7 @@ I came across bash wrapper for getopts (optparse, https://github.com/nk412/optpa
 ##Using clpargs
 The approach of clpargs is slightly different than using traditional command line options since I use args like: *name=value name2="value two"*.
 
-Executing scripts is like: `script.sh name=value name2=value`. To get help, '-h', '--help', '-help' and 'help' options are recognized and if any of them is present then usage and help is displayed (this requires that description and arguments haven been defined as in example below).
+Executing scripts is like: `script.sh name=value name2=value`. To get help, '-h', '--help', '-help' and 'help' options are recognized and if any of them is present then usage and help is displayed (this requires that description and arguments have been defined as in example below).
 
 A side effect of using clpargs.bash is that you can define your arguments as environment variables. So if you have argument in environment and you don't specify it in command line, then that environment variable is used. If argument is found from environment and you specify it in command line, command line takes precedence.
 

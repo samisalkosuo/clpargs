@@ -20,7 +20,7 @@
 #AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 #LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 #OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-#THE SOFTWARE. 
+#THE SOFTWARE.
 #
 #
 #To use in your scripts:
@@ -39,13 +39,11 @@
 #clpargs_define ARG2 "NAME2" "Another desc" false
 #
 #Default value can be also defined. Typicall for non-required arguments.
-#clpargs_define ARG3 "NAME3" "ARG3 is not mandatory and has default value" false "$ARG3_DEFAULT_VALUE" 
+#clpargs_define ARG3 "NAME3" "ARG3 is not mandatory and has default value" false "$ARG3_DEFAULT_VALUE"
 #
 #Parse all command line arguments.
 #clpargs_parse "$@"
 #
-
-
 
 #print error and exit
 function clpargs_error {
@@ -74,12 +72,12 @@ function clpargs_define
     export "CLPARGS_DEFINED_ARG_$1_VALUE_NAME=$2"
     export "CLPARGS_DEFINED_ARG_$1_REQUIRED=$4"
     export "CLPARGS_DEFINED_ARG_$1_DEFAULT_VALUE=$5"
-    #add all arg names 
+    #add all arg names
     if [[ "$CLPARGS" == "" ]] ; then
 		export CLPARGS=$1
 	else
 		export CLPARGS=$CLPARGS:$1
-	fi		
+	fi
 
 	#if REQUIRED, add to array to be used when parsing
 	if [[ "$4" == "true" ]] ; then
@@ -87,12 +85,11 @@ function clpargs_define
 			export CLPARGS_REQUIRED_ARGS=$1
 		else
 			export CLPARGS_REQUIRED_ARGS=$CLPARGS_REQUIRED_ARGS:$1
-		fi		
+		fi
 	fi
-
 }
 
-#retrieve definition (value nae, description, required, default value) for given argument 
+#retrieve definition (value nae, description, required, default value) for given argument
 function clpargs_arg_definition
 {
 	if [ $# -lt 2 ]; then
@@ -162,12 +159,11 @@ function clpargs_usage
 				defaultValue="default value: $defaultValue"
 			else
 				defaultValue="default value: none"
-			fi		
+			fi
 
       		echo "  $arg"="<"$valueName">" - $desc "(REQUIRED: ""$REQUIRED"", ""$defaultValue"")"
   		done
 	)
-
 }
 
 #helper function to export variable
@@ -209,13 +205,13 @@ function clpargs_parse
 	for var in "$@"; do
 		#if any help string present, show help and exit
 		if [[ $var == "help"  ||  $var == "--help" ||  $var == "-h" ||  $var == "-help" ]]
-		then	
+		then
   			clpargs_usage
   			exit 1
 		fi
 
 		if [[ $var != *"="* ]]
-		then	
+		then
   			#if var does not contain '=' don't process it
   			continue
 		fi
@@ -244,8 +240,8 @@ function clpargs_parse
 			fi
 
   		done
-	) 
-	if (($? == 1)); then    
+	)
+	if (($? == 1)); then
     	exit 1
 	fi
 }
